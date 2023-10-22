@@ -1,0 +1,1 @@
+# Functions that will prepare the connection (cursor) to postgreSQL
