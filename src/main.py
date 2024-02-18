@@ -1,2 +1,2 @@
-import etl.main_etl
-import ia_learning.main_ia
+import main_etl
+import main_ia
