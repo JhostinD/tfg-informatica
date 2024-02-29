@@ -1,16 +1,17 @@
 from cfg import DB_PASS, DB_USER, DB_NAME, DB_HOST, DB_PORT#, NASDAQ_TOKEN
 from google.cloud import bigquery
 import db_connection as db
-import nasdaqdatalink as nd
+#import nasdaqdatalink as nd
 import pandas as pd
 import numpy as np
 import psycopg2 as psy
+import time
 
 # Google Cloud BigQuery client for extracting raw data
 client = bigquery.Client()
 
 def extract():
-    query = "SELECT * FROM `housecanary-com.sample.zip_ts` LIMIT 50"
+    query = "SELECT * FROM `housecanary-com.sample.zip_ts` LIMIT 2000"
 
     query_job = client.query(query)
 
@@ -21,6 +22,7 @@ def transform(data_raw):
     '''
     columns that will be saved (from 'zip_ts' table from dataset ):
         - zip (string): 5 digit postal code
+        - msa (string): 5 digit Metropolitan Statistical Area code
         - month (date): timeseries date
         - hpi_value (float): nominal housing price index
         - hpi_real (float): real housing price index after adjusting nominal hpi for inflation as measured by the CPI
@@ -34,6 +36,9 @@ def transform(data_raw):
 
     # Filtering columns given selected columns list
     df_clean = df_clean.loc[:, selected_columns]
+
+    # Formatting dates as float64 type
+    df_clean['month'] = pd.to_datetime(df_clean['month']).values.astype("float64")
 
     return df_clean
 
