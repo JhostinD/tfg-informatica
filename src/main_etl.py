@@ -3,9 +3,9 @@ from google.cloud import bigquery
 import db_connection as db
 #import nasdaqdatalink as nd
 import pandas as pd
+from pandas import DataFrame
 import numpy as np
 import psycopg2 as psy
-import time
 
 # Google Cloud BigQuery client for extracting raw data
 client = bigquery.Client()
@@ -35,10 +35,14 @@ def transform(data_raw):
     df_clean = data_raw.to_dataframe()
 
     # Filtering columns given selected columns list
-    df_clean = df_clean.loc[:, selected_columns]
+    df_clean: DataFrame = df_clean.loc[:, selected_columns]
 
     # Formatting dates as float64 type
     df_clean['month'] = pd.to_datetime(df_clean['month']).values.astype("float64")
+
+    # Cleaning data from NaN values in hpi_value and hpi_real
+    df_clean = df_clean[df_clean.hpi_value.notnull()]
+    df_clean = df_clean[df_clean.hpi_real.notnull()]
 
     return df_clean
 

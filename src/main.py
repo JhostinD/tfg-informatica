@@ -20,11 +20,11 @@ if __name__ == '__main__':
     '''
     model, X_test_scaled, y_test = main_ia.compile_and_train_model(data_processed)
 
-    # Hacer predicciones sobre el conjunto de prueba
+    # Predict over the test set
     predictions = model.predict(X_test_scaled)
 
-    # Visualizar las primeras 5 predicciones junto con los valores reales
-    for i in range(5):
+    # Visualize the first 5 predictions along the real values
+    for i in range(len(predictions)):
         print("Predicción:", predictions[i])
         print("Valor real:", y_test.iloc[i].values)
         print()  # Salto de línea para separar las predicciones
