@@ -55,6 +55,7 @@ def load(conn, df):
     db.insert_rows(df, table_name, schema_name, conn)
 
 
+# this code does not execute when executing main script (only main_etl)
 if __name__ == "__main__":
 
     # Retrieving raw data from Google Cloud Platform dataset (House-canary)

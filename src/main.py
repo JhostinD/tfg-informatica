@@ -14,7 +14,6 @@ if __name__ == '__main__':
     # Transforming raw data into processed data for database
     data_processed = main_etl.transform(data_raw)
 
-
     '''
     PHASE 2: Neural Network training with retrieved data
     '''
@@ -27,4 +26,4 @@ if __name__ == '__main__':
     for i in range(len(predictions)):
         print("Predicción:", predictions[i])
         print("Valor real:", y_test.iloc[i].values)
-        print()  # Salto de línea para separar las predicciones
+        print()  # In order to separate predictions

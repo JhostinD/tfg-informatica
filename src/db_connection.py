@@ -26,6 +26,7 @@ def insert_rows(df, table_name, schema_name, conn):
         cursor = conn.cursor()
 
         # Insert DataFrame values into sql table via sqlAlchemy
+        # Note: In case of PK conflict replaces the old row
         df.to_sql(table_name, conn_sql_alchemy, if_exists='replace')
 
         # Commit the changes
