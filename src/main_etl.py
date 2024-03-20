@@ -1,10 +1,8 @@
-from cfg import DB_PASS, DB_USER, DB_NAME, DB_HOST, DB_PORT#, NASDAQ_TOKEN
+from cfg import DB_PASS, DB_USER, DB_NAME, DB_HOST, DB_PORT
 from google.cloud import bigquery
 import db_connection as db
-#import nasdaqdatalink as nd
 import pandas as pd
 from pandas import DataFrame
-import numpy as np
 import psycopg2 as psy
 
 # Google Cloud BigQuery client for extracting raw data
