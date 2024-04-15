@@ -8,8 +8,11 @@ conn_string = f'postgresql://{DB_USER}:{DB_PASS}@{DB_HOST}/{DB_NAME}'
 database = create_engine(conn_string)
 conn_sql_alchemy = database.connect()
 
+# Connection to database
+conn = psycopg2.connect(dbname=DB_NAME, user=DB_USER, password=DB_PASS)
 
-def insert_rows(df, table_name, schema_name, conn):
+
+def insert_rows(df, table_name, schema_name):
     """
     Insert rows from a Pandas DataFrame into a PostgreSQL table.
 
@@ -17,7 +20,6 @@ def insert_rows(df, table_name, schema_name, conn):
     - df: Pandas DataFrame containing the data to be inserted.
     - table_name: Name of the PostgreSQL table to insert the data into.
     - schema_name: Name of the PostgreSQL schema to insert the data into.
-    - conn: Psycopg2 connection object.
 
     Note: Assumes that the table columns match the DataFrame columns.
     """
