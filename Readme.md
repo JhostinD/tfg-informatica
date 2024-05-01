@@ -3,7 +3,7 @@ Este es el repositorio principal del proyecto final de ingeniería informática
 
 Autor: Jhostin D. Ortiz Moreno
 
-## Creación de la app en Spotify for Developers
+## Creación del proyecto en GCP (Google Cloud Platform)
 
 1. Es necesario crearse una cuenta en google (es gratuito).
 2. Acceder al siguiente enlace e iniciar sesión: https://console.cloud.google.com/.
